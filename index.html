@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>VueJS Course</title>
+  <link rel="stylesheet" type="text/css" href="main.css" />
+</head>
+
+<body>
+  <div id="app" v-cloak>
+
+    {{ `${firstName} ${middleName} ${lastName.toUpperCase()}`}}
+    <br>
+    {{ fullName() }}
+    <br>
+    <br>
+    Type of age is {{ typeof age }}
+    <br>
+    {{ age }}
+
+    <!-- uses method -->
+    <button type="button" @click="increment" >Increment</button>
+
+    <!-- we can use directive function -->
+    <!-- uses ctrl for decrement -->
+    <button type="button" @click.shift="age--" >Decrement</button>
+    <p>note: Please hold shift button for decrement</p>
+    <hr>
+
+    <!-- v-bind uses for dinamyc -->
+    <a v-bind:href="url" target="_blank">Google</a>
+    <br>
+    <p v-html="raw_url"></p>
+
+    <!-- update using v-model -->
+    <!-- lazy.trim uses for allowing trimmed whitespace in input -->
+    <!-- for ex. input: "dimas       rio" will trimed to "dimas rio"-->
+    <label> First Name: </label>
+    <input type="text" v-model.lazy.trim="firstName" />
+
+    <!-- Enable enter -->
+    <!-- https://vuejs.org/guide/essentials/event-handling.html#key-modifiers -->
+    <label> Middle Name: </label>
+    <input type="text" :value="middleName" @keyup.enter="inputUpdateMiddleName" placeholder="Please type Enter for Apply middle name"/>
+    
+    <!-- update using listening event, same way with v-model -->
+    <!-- @input.prevent same thing with event.preventDefault() -->
+    <label> Last Name: </label>
+    <input type="text" :value="lastName" @input.prevent="inputUpdateLastName('This event was triggered!', $event)" />
+  
+    <!-- Keep input as number not string -->
+    <label> Age: </label>
+    <input type="number" v-model.number="age" />
+  </div>
+
+  <!-- <div id="app2">
+    {{ firstName }}
+    {{ lastName }}
+  </div> -->
+
+  <script src="https://unpkg.com/vue@next"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>
