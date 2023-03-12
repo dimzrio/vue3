@@ -34,6 +34,23 @@ const vm = Vue.createApp({
         inputUpdateMiddleName(event){
             this.middleName = event.target.value
         }
+    },
+
+    computed: {
+        formalFullName() {
+            return 'Mr. ' + this.fullName()
+        }
+    },
+
+    watch: {
+        // Watcher uses for watching change value on age field.
+        // When value change, after 5s will be back to 32
+        age(newVal, oldVal) {
+            console.log(oldVal, newVal)
+            setTimeout(() => {
+                this.age = 32
+            }, 5000)
+        }
     }
 }).mount('#app')
 
