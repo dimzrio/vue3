@@ -1,0 +1,30 @@
+<!DOCTYPE>
+<html>
+
+<head>
+  <title>VueJS Course</title>
+  <link rel="stylesheet" type="text/css" href="main.css" />
+</head>
+
+<body>
+  <div id="app">
+    <h3 v-if="mode == 1"> This is an example conditional rendering</h3>
+
+    <template v-else-if="mode == 2">
+      <h3> Dimzrio Tutorials</h3>
+    </template>
+    
+    <h3 v-else> Hello world!</h3>
+
+    <select v-model="mode">
+      <option value="1">mode-1</option>
+      <option value="2">mode-2</option>
+      <option value="3">mode-3</option>
+    </select>
+  </div>
+
+  <script src="https://unpkg.com/vue@next"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>
