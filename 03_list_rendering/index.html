@@ -1,0 +1,38 @@
+<!DOCTYPE>
+<html>
+
+<head>
+  <title>VueJS Course</title>
+  <link rel="stylesheet" type="text/css" href="main.css" />
+</head>
+
+<body>
+  <div id="app">
+    <ul>
+      <li v-for="bird in birds">
+        {{ bird }}
+      </li>
+    </ul>
+
+    <ul>
+      <li v-for="(bird, index) in birds">
+        {{ bird }} - {{ index }}
+      </li>
+    </ul>
+
+    
+    <ul>
+      <li v-for="people in peoples">
+        <li v-for="(value, index) in people">
+          {{index}}. {{value.name}} ({{value.age}})
+        </li>
+      </li>
+    </ul>
+
+  </div>
+
+  <script src="https://unpkg.com/vue@next"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>
