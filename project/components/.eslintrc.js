@@ -18,6 +18,5 @@ module.exports = {
   ],
   'rules': {
     'quotes': 'error',
-    'vue/no-multiple-template-root': 'off',
   },
 };
