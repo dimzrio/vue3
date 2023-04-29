@@ -18,5 +18,8 @@
     "eslint-config-google": "^0.14.0",
     "eslint-plugin-vue": "^9.11.0",
     "vite": "^4.1.4"
+  },
+  "rules": {
+    "vue/no-multiple-template-root": "off"
   }
 }
