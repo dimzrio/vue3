@@ -6,7 +6,9 @@
                 {{ questionsAnswered }} out of {{ questions.length }} questions answered
             </div>
         </div>
-        <div class="single-question" v-for="(question, index) in questions" :key="question.q"
+
+        <transition-group name="fade">
+            <div class="single-question" v-for="(question, index) in questions" :key="question.q"
             v-show="questionsAnswered === index">
 
             <div class="question"> {{ question.q }}</div>
@@ -16,6 +18,8 @@
                 <div class="answer"> {{ answer.text }}</div>
             </div>
         </div>
+        </transition-group>
+
     </div>
 </template>
 

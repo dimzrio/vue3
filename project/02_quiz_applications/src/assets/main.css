@@ -128,3 +128,20 @@ body {
   border: 0;
   outline: 0;
 }
+
+
+/* feading zoom in out */
+.fade-enter-from{
+  opacity: 0;
+}
+
+.fade-enter-active{
+  transition: all 1s linear;
+  color: rebeccapurple;
+}
+
+.fade-leave-to{
+  transition: all 1s linear;
+  color: greenyellow;
+  opacity: 0;
+}
