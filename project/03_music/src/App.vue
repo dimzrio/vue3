@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <!-- Header -->
-    <app-header></app-header>
+    <headers></headers>
 
     <!-- Introduction -->
     <section class="mb-8 py-20 text-white text-center relative">
@@ -268,17 +268,21 @@
     </div>
 
     <!-- Auth -->
-    <app-auth></app-auth>
+    <auth></auth>
   </div>
 </template>
 
 <script>
-import AppHeader from './components/AppHeader.vue'
-import AppAuth from './components/AppAuth.vue'
+// If u want disable multiple word in component.
+// https://eslint.vuejs.org/rules/multi-word-component-names.html
+// and configure in eslinrc.cjs in rules section.
+
+import Headers from './components/Headers.vue'
+import Auth from './components/Auth.vue'
 export default {
   components: {
-    AppHeader,
-    AppAuth
+    Headers,
+    Auth
   }
 }
 </script>
