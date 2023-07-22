@@ -178,6 +178,8 @@ export default {
       this.reg_alert_msg = 'Success! Your account has been created.'
 
       // console.log(userCred)
+
+      window.location.reload()
     }
   }
 }
