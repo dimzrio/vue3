@@ -3,7 +3,13 @@
   <header id="header" class="bg-gray-700">
     <nav class="container mx-auto flex justify-start items-center py-5 px-4">
       <!-- App Name -->
-      <a class="text-white font-bold uppercase text-2xl mr-4" href="#">Music</a>
+      <!-- exact-active-class uses for disable active link page colour -->
+      <router-link
+        class="text-white font-bold uppercase text-2xl mr-4"
+        :to="{ name: 'home' }"
+        exact-active-class="no-active"
+        >Music</router-link
+      >
 
       <div class="flex flex-grow items-center">
         <!-- Primary Navigation -->
@@ -18,12 +24,17 @@
 
           <template v-else>
             <li>
-              <a class="px-2 text-white" href="#">Manage</a>
+              <router-link class="px-2 text-white" href="#" :to="{ name: 'manage' }"
+                >Manage</router-link
+              >
             </li>
             <li>
-              <a class="px-2 text-white" href="#" @click.prevent="userStore.signOut">Logout</a>
+              <a class="px-2 text-white" href="#" @click.prevent="signOut">Logout</a>
             </li>
           </template>
+          <li>
+            <router-link class="px-2 text-white" href="#" to="/about">About</router-link>
+          </li>
         </ul>
       </div>
     </nav>
@@ -54,6 +65,23 @@ export default {
       // This way to call state if define mapState & mapWriteableState
       // this.isOpen = !this.isOpen
       // console.log(this.isOpen)
+    },
+
+    signOut() {
+      this.userStore.signOut()
+      console.log(this.$route)
+
+      // this way not suitable for large apps
+      // if (this.$route.name === 'manage') {
+      //   this.$router.push({ name: 'home' })
+      // }
+
+      // use this
+      // https://router.vuejs.org/guide/advanced/meta.html
+
+      if (this.$route.meta.requiresAuth) {
+        this.$router.push({ name: 'home' })
+      }
     }
   }
 }
