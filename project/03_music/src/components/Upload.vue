@@ -20,6 +20,7 @@
         >
           <h5>Drop your files here</h5>
         </div>
+        <input type="file" multiple @change="upload($event)" />
         <hr class="my-6" />
         <!-- Progess Bars -->
         <div class="mb-4" v-for="upload in uploads" :key="upload.name">
@@ -55,11 +56,14 @@ export default {
   methods: {
     upload($event) {
       this.is_dragover = false
+      console.log($event)
 
       // [... vars] this way to conver to array
       // [...$event.dataTransfer.files] but doesn't work
 
-      const files = Array.from($event.dataTransfer.files)
+      const files = $event.dataTransfer
+        ? Array.from($event.dataTransfer.files) // use for drag and drop fiels
+        : Array.from($event.target.files) // button upload file
 
       files.forEach((file) => {
         if (file.type !== 'audio/mpeg') {
@@ -114,6 +118,18 @@ export default {
         console.log(file)
       })
     }
+
+    // cancelUploads() {
+    //   this.uploads.forEach((upload) => {
+    //     upload.task.cancel()
+    //   })
+    // },
+
+    // beforeUnmount() {
+    //   this.uploads.forEach((upload) => {
+    //     upload.task.cancel()
+    //   })
+    // }
   }
 }
 </script>
