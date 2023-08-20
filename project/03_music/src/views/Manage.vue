@@ -4,7 +4,7 @@
     <section class="container mx-auto mt-6">
       <div class="md:grid md:grid-cols-3 md:gap-4">
         <div class="col-span-1">
-          <app-upload ref="upload"></app-upload>
+          <app-upload ref="upload" :addSong="addSong"></app-upload>
         </div>
         <div class="col-span-2">
           <div class="bg-white rounded border border-gray-200 relative flex flex-col">
@@ -20,6 +20,7 @@
                 :song="song"
                 :updateSong="updateSong"
                 :index="i"
+                :removeSong="removeSong"
               >
               </composition-item>
             </div>
@@ -52,20 +53,27 @@ export default {
     updateSong(i, values) {
       this.songs[i].modified_name = values.modified_name
       this.songs[i].genre = values.genre
-    }
-  },
-  // mounted song from db
-  async created() {
-    const snapshot = await songsCollection.where('uid', '==', auth.currentUser.uid).get()
+    },
 
-    snapshot.forEach((document) => {
+    removeSong(i) {
+      this.songs.splice(i, 1)
+    },
+
+    // this function to show song from db in manage page
+    addSong(document) {
       const song = {
         ...document.data(),
         docID: document.id
       }
       this.songs.push(song)
       console.log(song)
-    })
+    }
+  },
+  // mounted song from db
+  async created() {
+    const snapshot = await songsCollection.where('uid', '==', auth.currentUser.uid).get()
+
+    snapshot.forEach(this.addSong)
   }
 
   // beforeRouteLeave(to, from, next) {
